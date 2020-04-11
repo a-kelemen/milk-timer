@@ -9,12 +9,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-            precacheImage(new AssetImage('images/cumi_0.png'), context);
+    precacheImage(new AssetImage('images/cumi_0.png'), context);
     precacheImage(new AssetImage('images/cumi_1.png'), context);
     precacheImage(new AssetImage('images/cumi_2.png'), context);
     precacheImage(new AssetImage('images/cumi_3.png'), context);
     return MaterialApp(
       title: 'Milk timer',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -33,7 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Timer timer;
   bool _buttonPressed = false;
   bool _loopActive = false;
@@ -49,7 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void initState() {
-
     SharedPrefs.getCounterValue().then((double val) {
       setState(() {
         widget.counter = val.toInt();
@@ -59,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     timer = Timer.periodic(
         //Duration(seconds: 3600), (Timer t) => checkForNewSharedLists());
-        Duration(seconds: 10), (Timer t) => checkForNewSharedLists());
+        Duration(seconds: 10),
+        (Timer t) => checkForNewSharedLists());
   }
 
   @override
@@ -113,10 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.black,
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -139,7 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     showDialog(
                       context: context,
                       barrierDismissible: false,
-                      
                       builder: (BuildContext context) {
                         return AlertDialog(
                           backgroundColor: Color(0xFF303030),
@@ -153,14 +150,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: GestureDetector(
                                     child: Row(children: <Widget>[
                                       Container(
-                                        padding: EdgeInsets.only(
-                                            right: 10, left: 20),
-                                        child:      Image(
-                                        image: AssetImage('images/nipple.png'),
-                                        height: 30,
-                                      )
-                                      ),
-                                      
+                                          padding: EdgeInsets.only(
+                                              right: 10, left: 20),
+                                          child: Image(
+                                            image:
+                                                AssetImage('images/nipple.png'),
+                                            height: 30,
+                                          )),
                                       Image(
                                         image: AssetImage('images/left.png'),
                                         height: 60,
@@ -179,13 +175,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //color: Colors.transparent,
                                     child: Row(children: <Widget>[
                                       Container(
-                                        padding: EdgeInsets.only(
-                                            right: 10, left: 20),
-                                        child: Image(
-                                        image: AssetImage('images/nipple.png'),
-                                        height: 30,
-                                      )
-                                      ),
+                                          padding: EdgeInsets.only(
+                                              right: 10, left: 20),
+                                          child: Image(
+                                            image:
+                                                AssetImage('images/nipple.png'),
+                                            height: 30,
+                                          )),
                                       Image(
                                         image: AssetImage('images/right.png'),
                                         height: 60,
@@ -198,8 +194,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                     },
                                   ),
                                 ),
-
-                               
                               ],
                             ),
                           ),
@@ -208,15 +202,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: <Widget>[
                                 GestureDetector(
                                   child: Container(
-                                    padding:
-                                        EdgeInsets.only(bottom: 10, right: 10),
-                                    child:                                  Image(
-                                        image: AssetImage('images/nyil.png'
-                                        
-                                        ),
+                                      padding: EdgeInsets.only(
+                                          bottom: 10, right: 10),
+                                      child: Image(
+                                        image: AssetImage('images/nyil.png'),
                                         height: 30,
-                                      )
-                                  ),
+                                      )),
                                   onTap: () {
                                     Navigator.of(context).pop();
                                   },
@@ -229,9 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   },
                   child: Container(
-                    decoration: BoxDecoration(
-
-                        ),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -272,7 +261,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 onTap: () {}),
-
             AnimatedContainer(
               duration: const Duration(seconds: 1),
               child: getSide() == "l"
